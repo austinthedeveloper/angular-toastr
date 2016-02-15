@@ -1,26 +1,26 @@
 // Mix-ins
-.borderRadius(@radius) {
-  -moz-border-radius: @radius;
-  -webkit-border-radius: @radius;
-  border-radius: @radius;
+@mixin borderRadius($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
 }
 
-.boxShadow(@boxShadow) {
-  -moz-box-shadow: @boxShadow;
-  -webkit-box-shadow: @boxShadow;
-  box-shadow: @boxShadow;
+@mixin boxShadow($boxShadow) {
+  -moz-box-shadow: $boxShadow;
+  -webkit-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
 }
 
 // Variables
-@black: #000000;
-@grey: #999999;
-@light-grey: #CCCCCC;
-@white: #FFFFFF;
-@near-black: #030303;
-@green: #51A351;
-@red: #BD362F;
-@blue: #2F96B4;
-@orange: #F89406;
+$white: #ffffff;
+$black: #000000;
+$grey: #999999;
+$light-grey: #CCCCCC;
+$near-black: #030303;
+$green: #51A351;
+$red: #BD362F;
+$blue: #2F96B4;
+$orange: #F89406;
 
 // Styles
 .toast-title {
@@ -32,11 +32,11 @@
 
   a,
   label {
-    color: @white;
+    color: $white;
   }
 
   a:hover {
-    color: @light-grey;
+    color: $light-grey;
     text-decoration: none;
   }
 }
@@ -45,17 +45,17 @@
   position: relative;
   right: -0.3em;
   top: -0.3em;
-  float: right;
+  float: right; 
   font-size: 20px;
   font-weight: bold;
-  color: @white;
+  color: $white;
   -webkit-text-shadow: 0 1px 0 rgba(255,255,255,1);
   text-shadow: 0 1px 0 rgba(255,255,255,1);
   opacity: 0.8;
 
   &:hover,
   &:focus {
-    color: @black;
+    color: $black;
     text-decoration: none;
     cursor: pointer;
     opacity: 0.4;
@@ -135,16 +135,16 @@ button.toast-close-button {
     margin: 0 0 6px;
     padding: 15px 15px 15px 50px;
     width: 300px;
-    .borderRadius(3px 3px 3px 3px);
+    @include borderRadius(3px 3px 3px 3px);
     background-position: 15px center;
     background-repeat: no-repeat;
-    .boxShadow(0 0 12px @grey);
-    color: @white;
+    @include boxShadow(0 0 12px $grey);
+    color: $white;
     opacity: 0.8;
   }
 
   > :hover {
-    .boxShadow(0 0 12px @black);
+    @include boxShadow(0 0 12px $black);
     opacity: 1;
     cursor: pointer;
   }
@@ -180,23 +180,23 @@ button.toast-close-button {
 }
 
 .toast {
-  background-color: @near-black;
+  background-color: $near-black;
 }
 
 .toast-success {
-  background-color: @green;
+  background-color: $green;
 }
 
 .toast-error {
-  background-color: @red;
+  background-color: $red;
 }
 
 .toast-info {
-  background-color: @blue;
+  background-color: $blue;
 }
 
 .toast-warning {
-  background-color: @orange;
+  background-color: $orange;
 }
 
 .toast-progress {
@@ -204,7 +204,7 @@ button.toast-close-button {
   left: 0;
   bottom: 0;
   height: 4px;
-  background-color: @black;
+  background-color: $black;
   opacity: 0.4;
 }
 

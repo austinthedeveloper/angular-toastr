@@ -1,5 +1,5 @@
 var gulp         = require('gulp');
-var less         = require('gulp-less');
+var sass         = require('gulp-sass');
 var jshint       = require('gulp-jshint');
 var ngTemplates  = require('gulp-angular-templatecache');
 var rename       = require('gulp-rename');
@@ -10,15 +10,15 @@ var minifyCss    = require('gulp-minify-css');
 var del          = require('del');
 var stylish      = require('jshint-stylish');
 
-gulp.task('less-dev', function() {
-  return gulp.src('src/toastr.less')
-    .pipe(less())
+gulp.task('sass-dev', function() {
+  return gulp.src('src/toastr.scss')
+    .pipe(sass())
     .pipe(gulp.dest('gen'));
 });
 
-gulp.task('less-prod', function() {
-  return gulp.src('src/toastr.less')
-    .pipe(less())
+gulp.task('sass-prod', function() {
+  return gulp.src('src/toastr.scss')
+    .pipe(sass())
     .pipe(rename('angular-toastr.css'))
     .pipe(gulp.dest('dist'))
     .pipe(minifyCss())
@@ -67,7 +67,7 @@ gulp.task('template', function() {
 
 gulp.task('watch', function() {
   gulp.watch('src/**/*.js', ['lint', 'scripts-dev']);
-  gulp.watch('src/toastr.less', ['less-dev']);
+  gulp.watch('src/toastr.scss', ['sass-dev']);
   gulp.watch('src/**/*.html', ['template']);
 });
 
@@ -75,6 +75,6 @@ gulp.task('clean', function(cb) {
   del(['dist', 'gen'], cb);
 });
 
-gulp.task('default', ['less-dev', 'scripts-dev', 'template', 'watch']);
-gulp.task('production', ['less-prod', 'scripts-prod', 'scripts-prod-tpls']);
-gulp.task('travis', ['less-dev', 'scripts-dev', 'template']);
+gulp.task('default', ['sass-dev', 'scripts-dev', 'template', 'watch']);
+gulp.task('production', ['sass-prod', 'scripts-prod', 'scripts-prod-tpls']);
+gulp.task('travis', ['sass-dev', 'scripts-dev', 'template']);
